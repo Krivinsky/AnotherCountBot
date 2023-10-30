@@ -13,5 +13,7 @@ namespace AnotherCountBot.Services
         /// Получение сессии пользователя по идентификатору
         /// </summary>
         Session GetSession(long chatId);
+
+
     }
 }

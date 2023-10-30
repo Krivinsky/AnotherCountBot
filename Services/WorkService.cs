@@ -8,14 +8,17 @@ namespace AnotherCountBot.Services
 {
     public class WorkService : IService
     {
-        public int Count(ICollection<string> list)
+        public int Count(string str)
         {
-            throw new NotImplementedException();
+            return str.Length;
         }
 
-        public int Sum(ICollection<int> list)
+        public int Sum(string str)
         {
-            throw new NotImplementedException();
+            List<string> strings = str.Split(' ').ToList();
+            var ints = strings.Select (i => Int32.Parse(i));
+            int result = ints.Sum();
+            return result;
         }
     }
 }

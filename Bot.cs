@@ -51,7 +51,6 @@ namespace AnotherCountBot
                 return;
             }
 
-            
             // Обрабатываем входящие сообщения из Telegram Bot API: https://core.telegram.org/bots/api#message
             Console.WriteLine($"Получено сообщение {update.Message.Text}");
             if (update.Type == UpdateType.Message)

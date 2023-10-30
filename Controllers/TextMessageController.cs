@@ -2,7 +2,6 @@
 using Telegram.Bot.Types;
 using Telegram.Bot.Types.ReplyMarkups;
 using Telegram.Bot.Types.Enums;
-using Telegram.Bot.Types.ReplyMarkups;
 using AnotherCountBot.Services;
 
 namespace AnotherCountBot.Controllers
@@ -11,11 +10,14 @@ namespace AnotherCountBot.Controllers
     {
         ITelegramBotClient _telegramBotClient;
         IStorage _memoryStorage;
+        IService _service;
 
-        public TextMessageController(ITelegramBotClient telegramBotClient, IStorage memoryStorage)
+
+        public TextMessageController(ITelegramBotClient telegramBotClient, IStorage memoryStorage, IService service)
         {
             _telegramBotClient = telegramBotClient;
             _memoryStorage = memoryStorage;
+            _service = service;
         }
 
         public async Task Handle(Message message, CancellationToken ct)
@@ -50,15 +52,21 @@ namespace AnotherCountBot.Controllers
                     if (functionId == "count")
                     {
                         //TODO количество символов
+                        int result = _service.Count(message.Text);
+                        await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, Convert.ToString(result));
+                        break;
                     }
 
                     if (functionId == "sum")
                     {
                         //TODO сумма чисел
+                        int result = _service.Sum(message.Text);
+                        await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, Convert.ToString(result));
+                        break;
                     }
 
                     {
-                        await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, "СООБЩЕНИЕ ПО ДЕФОЛТУ",
+                        await _telegramBotClient.SendTextMessageAsync(message.Chat.Id, "Что то пошло не так ((((",
                             cancellationToken: ct);
                     }
                     break;

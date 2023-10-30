@@ -11,12 +11,12 @@ namespace AnotherCountBot.Services
         /// <summary>
         /// Метод подсчета суммы чисел
         /// </summary>
-        int Sum(ICollection<int> list);
+        int Sum(string str);
 
 
         /// <summary>
         /// Метод подсчета количества символов в строке
         /// </summary>
-        int Count(ICollection<string> list);
+        int Count(string str);
     }
 }

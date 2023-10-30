@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Telegram.Bot;
+﻿using Telegram.Bot;
 using Telegram.Bot.Types;
 
 namespace AnotherCountBot.Controllers
@@ -20,6 +15,7 @@ namespace AnotherCountBot.Controllers
         public async Task Handle(Message message, CancellationToken token) 
         {
             Console.WriteLine($"Контроллер {GetType().Name} получил сообщение");
+            
             await _telegramBotClient.SendTextMessageAsync(
                 message.Chat.Id,
                 $"Получено сообщение не поддерживаемого формата",
